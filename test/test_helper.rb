@@ -9,6 +9,8 @@ require 'html/document'
 require File.dirname(__FILE__) + "/../lib/jrails_ujs_helper"
 include JrailsUjsHelper
 
+# assert_tag_in comes from Brian Landau @ Viget
+# http://www.viget.com/extend/testing-for-html-tags-in-rails-plugins/
 def assert_tag_in(*opts)  
    target = HTML::Document.new(opts.shift, false, false)  
    opts = opts.size > 1 ? opts.last.merge({ :tag => opts.first.to_s }) : opts.first  
