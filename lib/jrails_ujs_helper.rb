@@ -13,4 +13,10 @@ module JrailsUjsHelper
     
     link_to(name, options, html_options)
   end
+  
+  def self.included(klass)
+    klass.send(:helper_method, :ujs_link_to)
+  end
 end
+
+ActionController::Base.send(:include, JrailsUjsHelper)
