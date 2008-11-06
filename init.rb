@@ -1,1 +1,2 @@
-# Include hook code here
+# Automatically include our helper
+ActionView::Base.send :include, JrailsUjsHelper
