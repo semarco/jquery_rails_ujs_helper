@@ -1,8 +1,10 @@
 module JrailsUjsHelper
+  UJS_CLASS = {:class => "ujs"}
+  
   def ujs_link_to(name, options = {}, html_options = nil)
     if html_options
-      then html_options = html_options.merge(ujs_class)
-      else html_options = ujs_class
+      then html_options = html_options.merge(UJS_CLASS)
+      else html_options = UJS_CLASS
     end
     
     link_to(name, options, html_options)
@@ -11,14 +13,18 @@ module JrailsUjsHelper
   def ujs_form_for(record_or_name_or_array, *args, &proc)
     args.each_with_index do |a, index|
       next unless a.is_a?(Hash) && a.has_key?(:html)
-      args[index] = {:html => a[:html].merge!(ujs_class)}
+      args[index] = {:html => a[:html].merge!(UJS_CLASS)}
     end
     
     form_for(record_or_name_or_array, args.pop, &proc)
   end
+  
+  def ujs_form_tag(url_for_options = {}, options = {}, *parameters_for_url, &block)
+    if options.blank?
+      then options = UJS_CLASS
+      else options = options.merge(UJS_CLASS)
+    end
 
-  private
-  def ujs_class
-    @ujs_class ||= {:class => "ujs"}
+    form_tag(url_for_options = {}, options, *parameters_for_url, &block) 
   end
 end
