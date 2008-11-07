@@ -1,11 +1,4 @@
-# JrailsUjsHelper
 module JrailsUjsHelper
-  include ActionController::PolymorphicRoutes
-  include ActionView::Helpers::FormHelper
-  include ActionView::Helpers::RecordIdentificationHelper
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::UrlHelper
-  
   def ujs_link_to(name, options = {}, html_options = nil)
     if html_options
       then html_options = html_options.merge(ujs_class)
@@ -23,7 +16,7 @@ module JrailsUjsHelper
     
     form_for(record_or_name_or_array, args.pop, &proc)
   end
-  
+
   private
   def ujs_class
     @ujs_class ||= {:class => "ujs"}
