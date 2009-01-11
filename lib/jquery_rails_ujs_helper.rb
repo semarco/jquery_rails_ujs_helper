@@ -1,4 +1,4 @@
-module JrailsUjsHelper
+module JqueryRailsUjsHelper
   UJS_CLASS = {:class => "ujs"}
   
   def ujs_link_to(name, options = {}, html_options = nil)
