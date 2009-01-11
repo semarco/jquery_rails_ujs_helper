@@ -12,7 +12,7 @@ module JqueryRailsUjsHelper
   
   def ujs_form_for(record_or_name_or_array, *args, &proc)
     if args.empty?
-      args = UJS_CLASS
+      args = [UJS_CLASS]
     else
       args.each_with_index do |a, index|
         next unless a.is_a?(Hash) && a.has_key?(:html)
