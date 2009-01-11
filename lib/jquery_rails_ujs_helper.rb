@@ -11,9 +11,13 @@ module JqueryRailsUjsHelper
   end
   
   def ujs_form_for(record_or_name_or_array, *args, &proc)
-    args.each_with_index do |a, index|
-      next unless a.is_a?(Hash) && a.has_key?(:html)
-      args[index] = {:html => a[:html].merge!(UJS_CLASS)}
+    if args.empty?
+      args = UJS_CLASS
+    else
+      args.each_with_index do |a, index|
+        next unless a.is_a?(Hash) && a.has_key?(:html)
+        args[index] = {:html => a[:html].merge!(UJS_CLASS)}
+      end
     end
     
     form_for(record_or_name_or_array, args.pop, &proc)
