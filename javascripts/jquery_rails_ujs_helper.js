@@ -10,9 +10,12 @@ $(document).ready(function() {
 			data: $.param($(this).serializeArray()) + auth_token_params, 
 			dataType: 'script', 
 			type: 'post', 
-			url: this.attr('action')
+			url: $(this).attr('action')
 		});
-		this.reset();		
+		$(this).reset();		
 		return false;
+	});
+	$.ajaxSetup({
+	  data: { authenticity_token : AUTH_TOKEN }
 	});
 });
