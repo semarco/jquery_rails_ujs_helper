@@ -1,6 +1,10 @@
 module JqueryRailsUjsHelper
   UJS_CLASS = {:class => "ujs"}
   
+  # the ujs_XXX helpers didn't work for me in Rails 2.3,  
+  # after browser page fresh, the :id param is overwritten by the rails helpers
+  # why don't just use :class => "ujs" in links?
+  
   def ujs_link_to(name, options = {}, html_options = nil)
     if html_options
       then html_options = html_options.merge(UJS_CLASS)
@@ -32,6 +36,7 @@ module JqueryRailsUjsHelper
     form_tag(url_for_options = {}, options, *parameters_for_url, &block) 
   end
   
+  # changed this, so its simpler to read
   def yield_authenticity_token
     if protect_against_forgery?
         <<-JAVASCRIPT
